@@ -30,7 +30,7 @@ app.post('/usuarios', async (req, res) => {
     res.json(req.body);
 })
 
-app.delete('/:id', async (req, res) => {
+app.delete('/usuarios/:id', async (req, res) => {
     console.log("DELETE chamado para ID:", req.params.id)
     await prisma.usuarios.delete({
         where: {
