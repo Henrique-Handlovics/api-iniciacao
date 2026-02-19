@@ -10,6 +10,6 @@ datasource db {
 model usuarios {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String
-  idade String
+  idade Int
   nome  String
 }
