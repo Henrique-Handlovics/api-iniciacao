@@ -8,7 +8,7 @@ export const prisma = new PrismaClient();
 const app = express();
 app.use(express.json())
 app.use(cors({
-    origin: 'https://cadastro-usuario-lime.vercel.app/'
+    origin: 'https://cadastro-usuario-lime.vercel.app'
 }));
 
 app.get('/usuarios', async (req, res) => {
