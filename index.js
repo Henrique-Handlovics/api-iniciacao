@@ -17,12 +17,13 @@ app.get('/usuarios', async (req, res) => {
          res.json(users);
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Erro ao buscar usuários" });
+        res.status(500).json({ error: error.message });
     }
 })
 
 app.post('/usuarios', async (req, res) => {
-    await prisma.usuarios.create({
+    try{
+        await prisma.usuarios.create({
         data: {
             nome: req.body.nome,
             email: req.body.email,
@@ -30,16 +31,25 @@ app.post('/usuarios', async (req, res) => {
         }   
     })
     res.json(req.body);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
 })
 
 app.delete('/usuarios/:id', async (req, res) => {
-    console.log("DELETE chamado para ID:", req.params.id)
+    try{
+        console.log("DELETE chamado para ID:", req.params.id)
     await prisma.usuarios.delete({
         where: {
             id: req.params.id
         }
     })
     return res.status(204).send()
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: error.message });
+    }
 })
 
 //app.listen(3000)
