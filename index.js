@@ -7,7 +7,9 @@ export const prisma = new PrismaClient();
 
 const app = express();
 app.use(express.json())
-app.use(cors());
+app.use(cors({
+    origin: 'https://cadastro-usuario-lime.vercel.app/'
+}));
 
 app.get('/usuarios', async (req, res) => {
     try{
@@ -40,6 +42,8 @@ app.delete('/usuarios/:id', async (req, res) => {
     return res.status(204).send()
 })
 
-app.listen(3000)
+//app.listen(3000)
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
 
 //9EJ9OjrTQfq4YYDL
